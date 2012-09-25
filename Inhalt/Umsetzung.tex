@@ -1,0 +1,23 @@
+\section{Umsetzung}
+Die Aufgabenstellung gliedert das Projekt in mehrere Teilaufgaben, welche getrennt voneinander umgesetzt werden.
+
+\subsection{Laserscanner}
+Der Laserscanner LZR-U901 benötigt einen Treiber, welcher von der Universität Bremen erhältlich ist.
+
+Dieser Treiber liest alle vier Scan-Ebenen des Laserscanners ein und gibt diese sowohl als PointCloud2 als auch die erste Ebene als LaserScan in ROS aus.
+
+Um bei der Navigation Hindernissen besser ausweichen zu können, ist es sinnvoll, auf mehr als eine Ebene zurückzugreifen. Hierzu wird der Treiber so erweitert, dass zusätzlich ein zweites Topic \emph{merged_scan} veröffentlicht wird, welches eine nach bestimmten Regeln erstellte Ebene darstellt.
+
+Da das Ziel der Zusammenlegung der Ebenen auf Hinderniserkennung festgelegt ist, wird immer der nächstliegende Punkt aus allen vier Ebenen in die zusammengelegte Ebene eingefügt.
+
+Die Datenrate des Laserscanners beträgt für alle 4 Ebenen 3,75 Bilder pro Sekunde bei einer Winkelauflösung von 0.3516°. Die Ebenen liegen im Winkel von 2° zueinander.
+
+
+
+\subsection{Kinect}
+Während der Entwicklung stellten sich schnell Probleme mit der Rechenleistung des Turtlebot-Netbooks heraus. Als einfache Gegenmaßnahme wird die Kinect mit verringerter Auflösung- und Framerate betrieben. Das Tiefenbild wird mit 160x120 Pixeln und das RGB Bild mit 640x480 Pixeln bei jeweils 15 Bildern pro Sekunde verarbeitet.
+
+\subsection{Navigation}
+Zur Navigation wird die ROS node move_base verwendet. Die Einstellungen aus dem mitgelieferten turtlebot_navigation werden übernommen. Änderungen dienen hauptsächlich dazu, den Laserscanner sowie die Kinect als Sensoren zur Hinderniserkennung einzusetzen. Zudem werden sensorspezifische Konfigurationsdaten wie z.B. Reichweite entsprechend gesetzt.
+
+Damit die Kartenerstellung besser funktioniert, werden zudem einige Bewegungsparameter so verändert, dass langsamere und weniger ruckartige Bewegungen erfolgen.
