@@ -1,0 +1,95 @@
+\input{_Meta}
+
+% Dokumentenkopf -----------------------------------------------------------
+% 	Diese Vorlage basiert auf "scrreprt" aus dem koma-script.
+%		Die Option draft sollte beim fertigen Dokument ausgeschaltet werden.
+% --------------------------------------------------------------------------
+\documentclass[
+	12pt,						% Schriftgröße
+	DIV10,
+	german,					% für Umlaute, Silbentrennung etc.
+	a4paper,					% Papierformat
+	oneside,					% einseitiges Dokument
+	titlepage,				% es wird eine Titelseite verwendet
+	halfparskip,			% Abstand zwischen Absätzen (halbe Zeile)
+	normalheadings,		% Größe der Überschriften verkleinern
+	liststotoc,				% Verzeichnisse im Inhaltsverzeichnis aufführen
+	bibtotoc,				% Literaturverzeichnis im Inhaltsverzeichnis aufführen
+	idxtotoc,				% Index im Inhaltsverzeichnis aufführen
+	tablecaptionabove,	% Beschriftung von Tabellen oberhalb ausgeben
+	final						% Status des Dokuments (final/draft)
+]{scrreprt}
+\input{Packages}
+%\usepackage[utf8]{inputenc}
+
+% Erstellung eines Index und Abkürzungsverzeichnisses aktivieren -----------
+\makeindex
+%\makenomenclature
+
+
+% Kopf- und Fußzeilen, Seitenränder etc. -----------------------------------
+\input{Seitenstil}
+
+% Eigene Definitionen für Silbentrennung
+\include{Silbentrennung}
+
+% Das eigentliche Dokument -------------------------------------------------
+%		Der eigentliche Inhalt des Dokuments beginnt hier. Die einzelnen Seiten
+%		und Kapitel werden in eigene Dateien ausgelagert und hier nur inkludiert.
+% --------------------------------------------------------------------------
+\begin{document}
+
+% auch subsubsection nummerieren
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3}
+
+% keine Kopf-/Fußzeilen bei Deckblatt und Abstract
+\ofoot{}
+\include{Deckblatt}
+\ofoot{\pagemark}
+
+% Seitennummerierung -------------------------------------------------------
+%		Vor dem Hauptteil werden die Seiten in großen römischen Ziffern 
+%		nummeriert...
+% --------------------------------------------------------------------------
+\pagenumbering{Roman}
+\tableofcontents			% Inhaltsverzeichnis
+
+% ...danach in normalen arabischen Ziffern ---------------------------------
+\clearpage
+\pagenumbering{arabic}
+
+% Inhalt -------------------------------------------------------------------
+%		Hier können jetzt die einzelnen Kapitel inkludiert werden. Sie müssen
+%		in den entsprechenden .TEX-Dateien vorliegen. Die Dateinamen können
+% 		natürlich angepasst werden.
+% --------------------------------------------------------------------------
+\input{Inhalt/Einleitung}
+
+% Literaturverzeichnis -----------------------------------------------------
+%		Das Literaturverzeichnis wird aus der Datenbank Bibliographie.bib 
+% 		erstellt. Die genaue Verwendung von bibtex wird hier jedoch nicht erklärt.
+%		Link: http://de.wikipedia.org/wiki/BibTeX
+% --------------------------------------------------------------------------
+\bibliography{Bibliographie}
+\bibliographystyle{natdin}		% DIN-Stil des Literaturverzeichnisses
+
+%\include{Inhalt/Erklaerung}	% Selbständigkeitserklärung (wird hier nicht gebraucht)
+
+% Anhang -------------------------------------------------------------------
+%		Die Inhalte des Anhangs werden analog zu den Kapiteln inkludiert.
+%		Dies geschieht in der Datei Anhang.tex
+% --------------------------------------------------------------------------
+\begin{appendix}
+	\clearpage
+	\pagenumbering{roman}
+	%\input{Inhalt/Anhang} %% Für Anhang Kommentar hier entfernen
+\end{appendix}
+
+
+% Index --------------------------------------------------------------------
+%		Zum Erstellen eines Index, die folgende Zeile auskommentieren.
+% --------------------------------------------------------------------------
+%\printindex		% Index hier einfügen
+
+\end{document}
