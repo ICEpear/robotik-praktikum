@@ -1,0 +1,24 @@
+\chapter{Installation}
+\section{Hardwarevorraussetzungen}
+Zum Betrieb der Anwendung wird ein Net- oder Notebook mindestens der Leistungsklasse eines AMD E-350 benötigt. Als Basis wird der WillowGarage Turtlebot eingesetzt. Zur Lokalisation wird ein Laserscanner, per Standardeinstellung an /dev/ttyUSB1 erwartet, verwendet. Zusätzlich wird eine Microsoft Kinect eingesetzt.
+
+\section{Softwarevorraussetzungen}
+Die beigefügten Stacks funktionieren mit jeder Standardinstallation von ROS Fuerte unter Ubuntu 12.10.
+
+\section{Installation}
+Die Stacks aus dem Ordner "stacks" müssen in das entsprechende Verzeichnis im ROS Workspace kopiert werden. Beispiel: /home/turtlebot/ros\_workspace/stacks/.
+
+Sofern ein anderer als der im Robotik Praktikum eingesetzte Turtlebot verwendet wird, ist es sinnvoll, die Odometrie zu kalibrieren. Hierzu kann das von ROS mitgelieferte turtlebot\_calibration eingesetzt werden. Die Ergebnisse werden dann in das Launchfile des turtlebot\_player\_small stacks eingefügt. Alternativ kann ein eigener Turtlebot-Basis-Stack verwendet werden, welcher das Robot-Model des verwendeten Turtlebots darstellt.
+
+Dieser Stack - turtlebot\_player\_small - wird ebenfalls auf dem Steuerrungsrechner benötigt, welcher RVIZ betreiben soll. Dort muss zudem die GUI
+
+TODO
+
+hinkopiert werden.
+
+\section{Inbetriebnahme}
+Auf dem Turtlebot muss lediglich per \emph{roslaunch praktikum\_base\_node base.launch} das Launchfile gestartet werden. Alle weiteren Nodes werden dann bei Bedarf durch Auswahl in der GUI nachgeladen.
+
+\section{GUI}
+...
+
