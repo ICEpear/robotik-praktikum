@@ -6,19 +6,14 @@ Zum Betrieb der Anwendung wird ein Net- oder Notebook mindestens der Leistungskl
 Die beigefügten Stacks funktionieren mit jeder Standardinstallation von ROS Fuerte unter Ubuntu 12.10.
 
 \section{Installation}
-Die Stacks aus dem Ordner "stacks" müssen in das entsprechende Verzeichnis im ROS Workspace kopiert werden. Beispiel: /home/turtlebot/ros\_workspace/stacks/.
+Die Stacks aus dem Ordner  "'stacks"'  müssen in das entsprechende Verzeichnis im ROS Workspace kopiert werden. Beispiel: /home/turtlebot/ros\_workspace/stacks/.
 
 Sofern ein anderer als der im Robotik Praktikum eingesetzte Turtlebot verwendet wird, ist es sinnvoll, die Odometrie zu kalibrieren. Hierzu kann das von ROS mitgelieferte turtlebot\_calibration eingesetzt werden. Die Ergebnisse werden dann in das Launchfile des turtlebot\_player\_small stacks eingefügt. Alternativ kann ein eigener Turtlebot-Basis-Stack verwendet werden, welcher das Robot-Model des verwendeten Turtlebots darstellt.
 
-Dieser Stack - turtlebot\_player\_small - wird ebenfalls auf dem Steuerrungsrechner benötigt, welcher RVIZ betreiben soll. Dort muss zudem die GUI
-
-TODO
-
-hinkopiert werden.
+Dieser Stack - turtlebot\_player\_small - wird ebenfalls in der ROS Installation auf dem Steuerrungsrechner benötigt, welcher RViz betreiben soll. Diesem muss als ROS Master der Turtlebot zugewiesen werden was durch setzten der entsprechenden Umgebungsvariable erfolgt. Das RViz Panel, welches die GUI für das Robotik Praktikum darstellt, muss in die ROS Installation des Steuerungsrechners integriert werden. Dies wird durch kopieren des Ordners rviz\_praktikum\_panel in den Stacks Ordner erreicht.
 
 \section{Inbetriebnahme}
 Auf dem Turtlebot muss lediglich per \emph{roslaunch praktikum\_base\_node base.launch} das Launchfile gestartet werden. Alle weiteren Nodes werden dann bei Bedarf durch Auswahl in der GUI nachgeladen.
 
 \section{GUI}
-...
-
+Auf dem Steuerungsrechner wird zunächst RViz gestartet \emph{rosrun rviz rviz}. Anschliessend kann das GUI Panel über das \emph{Panels->Add New Panel} Menü hinzugefügt werden. Alternativ kann die mitgelieferte RViz Konfigurationsdatei  "'Praktikum.vcg"'  über \emph{File->Open Config} geladen werden. Diese lädt neben dem Panel auch noch einige interessante RViz Displays und liefert somit gleich eine sinnvolles Bild von dem was passiert.
